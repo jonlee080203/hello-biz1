@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="redisPro"
+  id="myeclipse.1492573013873"
+  context-root="/redisPro"
+  j2ee-spec="5.0"
+  archive="redisPro.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

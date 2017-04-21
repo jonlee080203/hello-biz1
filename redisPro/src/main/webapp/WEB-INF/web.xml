@@ -26,9 +26,6 @@
     <servlet-class>com.lee.redis.servlet.UpdateServlet</servlet-class>
   </servlet>
 
-
-
-
   <servlet-mapping>
     <servlet-name>InitServlet</servlet-name>
     <url-pattern>/InitServlet</url-pattern>
