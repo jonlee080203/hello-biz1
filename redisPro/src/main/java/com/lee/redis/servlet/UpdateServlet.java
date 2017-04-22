@@ -20,11 +20,14 @@ public class UpdateServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Jedis jedis = JedisInitUtil.getInitJedis();
 
-		Student student = new Student(Integer.valueOf(request
-				.getParameter("id")), request.getParameter("name"),
-				Date.valueOf(request.getParameter("birthday")),
-				request.getParameter("description"), Integer.valueOf(request
-						.getParameter("avgscore")));
+		int id = Integer.valueOf(request.getParameter("id"));
+		String name = request.getParameter("name");
+		Date birthday = Date.valueOf(request.getParameter("birthday"));
+		String description = request.getParameter("description");
+		int avgscore = Integer.valueOf(request.getParameter("avgscore"));
+		
+		Student student = new Student(id, name, birthday, description, avgscore);
+		// 先移除该学生的信息再添加修改后的信息
 		jedis.zrem(
 				"students",
 				StudentUtil.getStudentExist(
