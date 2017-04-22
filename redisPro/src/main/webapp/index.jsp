@@ -52,46 +52,45 @@ table.hovertable td {
 </head>
 
 <body>
-	<c:if test="${empty requestScope.students}">
+	<center>
+		<c:if test="${empty requestScope.students}">
 		还没有学生成绩，点击
 		<a href="add.jsp">新增学生信息</a>进行添加
 	</c:if>
 
-	<c:if test="${not empty requestScope.students}">
-		<a href="add.jsp">新增学生信息</a>
-		<table class="hovertable" border="1">
-			<caption align="top">学生信息表</caption>
-			<tr>
-				<th>ID</th>
-				<th>姓名</th>
-				<th>生日</th>
-				<th>备注</th>
-				<th>平均分</th>
-				<th colspan=2>操作</th>
-			</tr>
-			<c:forEach items="${requestScope.students}" var="student">
-				<tr onmouseover="this.style.backgroundColor='#ffff66';"
-					onmouseout="this.style.backgroundColor='#d4e3e5';">
-					<td>${student.id}</td>
-					<td>${student.name }</td>
-					<td>${student.birthday }</td>
-					<td>${student.description }</td>
-					<td>${student.avgscore }</td>
-					<td><a href="./DeleteServlet?id=${student.id }">删除</a>
-					</td>
-					<td><a href="./AddUpdate?id=${student.id }">修改</a>
-					</td>
+		<c:if test="${not empty requestScope.students}">
+			<a href="add.jsp">新增学生信息</a>
+			<table class="hovertable" border="1">
+				<caption align="top"><h3>学生信息表</h3></caption>
+				<tr>
+					<th>ID</th>
+					<th>姓名</th>
+					<th>生日</th>
+					<th>备注</th>
+					<th>平均分</th>
+					<th colspan=2>操作</th>
 				</tr>
-				<p>
-			</c:forEach>
+				<c:forEach items="${requestScope.students}" var="student">
+					<tr onmouseover="this.style.backgroundColor='#ffff66';"
+						onmouseout="this.style.backgroundColor='#d4e3e5';">
+						<td>${student.id}</td>
+						<td>${student.name }</td>
+						<td>${student.birthday }</td>
+						<td>${student.description }</td>
+						<td>${student.avgscore }</td>
+						<td><a href="./DeleteServlet?id=${student.id }">删除</a></td>
+						<td><a href="./AddUpdate?id=${student.id }">修改</a></td>
+					</tr>
+					<p>
+				</c:forEach>
 
-		</table>
+			</table>
 	总共：<c:out value="${requestScope.pageCount }"></c:out>页，点击页标跳转
 	<c:forEach var="i" begin="1" end="${requestScope.pageCount}">
-			<a href="InitServlet?page=${i}">${i}</a>
-		</c:forEach>
-	</c:if>
-
+				<a href="InitServlet?page=${i}">${i}</a>
+			</c:forEach>
+		</c:if>
+	</center>
 
 </body>
 </html>

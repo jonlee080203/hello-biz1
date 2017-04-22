@@ -27,6 +27,7 @@
 </head>
 
 <body>
+	<center>
 	<!-- 根据判断学生是否存在跳转到不同的servlet -->
 	<c:if test="${null==requestScope.student|| empty requestScope.student}">
 		<c:set value="./AddServlet" scope="session" var="servlet"></c:set>
@@ -34,13 +35,21 @@
 	<c:if test="${not empty requestScope.student}">
 		<c:set value="./UpdateServlet" scope="session" var="servlet"></c:set>
 	</c:if>
-	<c:out value="${requestScope.errorInfo}"></c:out>
+	<!-- 学生已存在，提示错误信息 -->
+	<font color=red><c:out value="${requestScope.errorInfo}" ></c:out></font>
 	<form action="<c:out value="${servlet }"></c:out>" method="post">
 		<table>
 			<tr>
 				<td>id</td>
-				<td><input type="text" name="id"
-					value="${requestScope.student.id}" /></td>
+				<!-- 修改学生信息时将id设置为不可被修改状态 -->
+				<c:if test="${not empty requestScope.student}">
+					<td><input type="text" name="id"
+						value="${requestScope.student.id}" readonly /></td>
+				</c:if>
+				<c:if test="${empty requestScope.student}">
+					<td><input type="text" name="id"
+						value="${requestScope.student.id}" /></td>
+				</c:if>
 			</tr>
 			<tr>
 				<td>姓名</td>
@@ -50,7 +59,7 @@
 			<tr>
 				<td>生日</td>
 				<td><input type="text" name="birthday"
-					value="${requestScope.student.birthday}" /></td>
+					value="${requestScope.student.birthday}" placeholder="输入日期格式yyyy-mm-dd" /></td>
 			</tr>
 			<tr>
 				<td>备注</td>
@@ -60,7 +69,7 @@
 			<tr>
 				<td>平均分</td>
 				<td><input type="text" name="avgscore"
-					value="${requestScope.student.avgscore}" /></td>
+					value="${requestScope.student.avgscore}"/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="提交" /></td>
@@ -69,6 +78,6 @@
 		</table>
 
 
-	</form>
+	</form></center>
 </body>
 </html>
